@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+        </script>
+
+    <title>Verificador de Palindromo</title>
+
+</head>
+
+<body>
+    <container class="display: flex">
+        <form class="form">
+            <div class="card"><br>
+                <h3>Testador de Palindromo</h3><br>
+                <input type="text" oninput="ReceberValor()" class="form-control" id="palindromo"
+                    placeholder="Insira um texto ou número para ver se é palíndromo" aria-label="Username"
+                    aria-describedby="basic-addon1"><br>
+                <div class="card-body">
+                    <button style="width: 45%;" type="button" id="sim" class="btn">Sim</button>
+                    <button style="width: 45%;" type="button" id="nao" class="btn">Não</button>
+                </div>
+            </div>
+
+        </form>
+    </container>
+    <script>
+        function ReceberValor() {
+            var valor;
+            document.getElementById("sim").className = "btn"
+            document.getElementById("nao").className = "btn"
+
+            valor = document.getElementById("palindromo").value;
+            if (valor != "") {
+                ePalindromo(valor);
+            } else {
+
+            }
+        }
+
+        function checkPalindrome(str) {
+            let le = str.length;
+            if (le === 0 || le === 1) {
+                return true;
+            }
+            if (str[0] === str[le - 1]) {
+                return checkPalindrome(str.slice(1, le - 1));
+            }
+            return false;
+        };
+
+        function ePalindromo(str) {
+
+            var vetorPalindromo = [];
+            var result;
+
+            for (var i = 0; i < str.length; i++) {
+                vetorPalindromo.unshift(str.charAt(i));
+                resultado = checkPalindrome(vetorPalindromo);
+               
+            }
+            
+            
+
+            if (resultado == true) {
+                    document.getElementById("sim").className = "btn btn-success"
+                } else {
+                    document.getElementById("nao").className = "btn btn-danger"
+                }
+
+
+        }
+
+    </script>
+
+    <style>
+        body {
+            display: flexbox;
+        }
+
+        .card {
+            background-color: lightblue;
+            display: inline-flexbox;
+            display: flex;
+            max-width: 500px;
+            text-align: center;
+            margin: auto;
+            border-radius: 20%;
+        }
+
+        input {
+            text-align: center;
+        }
+
+        #funcao {
+            align-self: center;
+            width: 45%;
+        }
+
+        #funcao:hover {
+            background-color: lightgrey;
+            cursor: pointer;
+        }
+
+        #palindromo {
+            align-self: center;
+            width: 80%;
+        }
+    </style>
+</body>
+
+</html>
